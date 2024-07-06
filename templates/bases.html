@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektronika - Navoiy </title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/templatemo-style.css') }}">
+
+</head>
+
+<body>
+<!-- Page Loader -->
+{% block navbar %}
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block container %}
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}
+
+<script src="{{ url_for('static', path='/js/plugins.js') }}"></script>
+<script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+
+
+</script>
+</body>
+</html>

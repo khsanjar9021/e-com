@@ -1,0 +1,169 @@
+{% extends "bases.html" %}
+
+
+<body>
+{% block navbar %}
+<div id="loader-wrapper">
+    <div id="loader"></div>
+
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('read_item') }}">
+            <i class="fas fa-film mr-2"></i>
+            Elektronika-Navoiy
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1 " aria-current="page"
+                       href="{{ url_for('read_item') }}">Товары</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="{{ url_for('read_video') }}">Видео товаров</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4 active" href="{{ url_for('read_contact') }}">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Каталог</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                    {% for cat in catalogue %}
+                                <a href="{{ url_for ('catalog_type', id=cat.id ) }}" class="dropdown-item">{{ cat.name }}</a>
+                     {% endfor %}
+
+                            </div>
+                        </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block search %}
+<div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll"
+     data-image-src="{{ url_for('static', path='img/electrons.jpg') }}">
+    <form class="d-flex tm-search-form" action="/search/">
+        <input class="form-control tm-search-input" name="title" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success tm-search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block container %}
+<div class="container-fluid tm-mt-60">
+    <div class="row tm-mb-50">
+        <div class="col-lg-4 col-12 mb-5">
+            <h2 class="tm-text-primary mb-5">Комментарий</h2>
+            <form id="contact-form" action="/comments/" method="POST" class="tm-contact-form mx-auto">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control rounded-0" placeholder="Name" required/>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control rounded-0" placeholder="Email" required/>
+                </div>
+                <div class="form-group">
+                    <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Message"
+                              required=></textarea>
+                </div>
+
+                <div class="form-group tm-text-right">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-12 mb-5">
+            <div class="tm-address-col">
+                <h2 class="tm-text-primary mb-5">Адресс</h2>
+                <p class="tm-mb-50"> </p>
+
+                <address class="tm-text-gray tm-mb-50">
+                    Навоийская обл. город Навоий <br>
+                    ул. Амира Темура. дом 28
+                </address>
+                <ul class="tm-contacts">
+                    <li>
+                        <a href="#" class="mb-2">
+                            <i class="fas fa-envelope"></i>
+                            Email: info@company.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/+998994123856" class="mb-2">
+                            <i class="fas fa-phone"></i>
+                            Tel: 99 412 38 56
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_item') }}" class="mb-2">
+                            <i class="fas fa-globe"></i>
+                            URL: www.elektronika-navoiy.uz
+                        </a>
+                    </li>
+                    <li class="mb-2"><a href="https://t.me/+998994123856"><i class="fab fa-telegram"></i>  Telegram </a></li>
+                    <li class="mb-2"><a href="http://instagram.com/_u/{utkirg_gaybullaev}/"><i
+                            class="fab fa-instagram"></i> Instagram </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12">
+            <h2 class="tm-text-primary mb-5">Локация</h2>
+            <!-- Map -->
+            <div class="mapouter mb-4">
+                <div class="gmap-canvas">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3051.7848340513933!2d65.36817627509123!3d40.
+                    102509974705384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f51c753a49661db%3A0x5985d240220da15c!
+                    2sELEKTRONIKA%20NAVOIY!5e0!3m2!1sru!2s!4v1716370663543!5m2!1sru!2s"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> <!-- container-fluid, tm-container-content -->
+{% endblock %}
+
+{% block footer %}
+<footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+    <div class="container-fluid tm-container-small">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Elektronika-Navoiy</h3>
+                <p><b> Шырокий выбор всех видов радиодеталей, инструментов и электроники. </b></p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Контакты</h3>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
+                    <li class="mb-2"><a href="https://t.me/+998994123856"><i class="fab fa-telegram"></i></a></li>
+                    <li class="mb-2"><a href="http://instagram.com/_u/{utkirg_gaybullaev}/"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+<script src="{{ url_for('static', path='/js/plugins.js') }}"></script>
+<script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+
+
+</script>
+</body>

@@ -1,0 +1,144 @@
+{% extends "bases.html" %}
+
+<body>
+<!-- Page Loader -->
+{% block navbar %}
+<div id="loader-wrapper">
+    <div id="loader"></div>
+
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('read_item') }}">
+            <i class="fas fa-film mr-2"></i>
+            Elektronika-Navoiy
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" aria-current="page"
+                       href="{{ url_for('read_item') }}">Товары</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2 active" href="{{ url_for('read_video') }}">Видео товаров</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="{{ url_for('read_contact') }}">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Каталог</a>
+                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                            {% for cat in catalogue %}
+                            <a href="{{ url_for ('catalog_type', id=cat.id ) }}" class="dropdown-item">{{ cat.name
+                                }}</a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block search %}
+<div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll"
+     data-image-src="{{ url_for('static', path='img/electrons.jpg') }}">
+    <form class="d-flex tm-search-form" action="/search/">
+        <input class="form-control tm-search-input" name="title" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success tm-search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block container %}
+<div class="container-fluid tm-container-content tm-mt-60">
+    <div class="row mb-4">
+        <h2 class="col-6 tm-text-primary">
+            Видео товаров
+        </h2>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <form action="" class="tm-text-primary">
+                Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
+            </form>
+        </div>
+    </div>
+    <div class="row tm-mb-90 tm-gallery">
+        {% for item in items %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+            <div class="single-video">
+                <video width="320" height="240" controls>
+                    <source src="/{{ item.video }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-intro d-flex justify-content-center">
+                    <h4> {{ item.title }}</h4>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div> <!-- row -->
+    <div class="row tm-mb-90">
+        <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+            <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+            <div class="tm-paging d-flex">
+                <a href="javascript:void(0);" class="active tm-paging-link">1</a>
+                <a href="javascript:void(0);" class="tm-paging-link">2</a>
+                <a href="javascript:void(0);" class="tm-paging-link">3</a>
+                <a href="javascript:void(0);" class="tm-paging-link">4</a>
+            </div>
+            <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
+        </div>
+    </div>
+</div>
+<!-- container-fluid, tm-container-content -->
+{% endblock %}
+
+{% block footer %}
+<footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+    <div class="container-fluid tm-container-small">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Elektronika-Navoiy</h3>
+                <p><b> Шырокий выбор всех видов радиодеталей, инструментов и электроники. </b></p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Контакты</h3>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
+                    <li class="mb-2"><a href="https://t.me/+998994123856"><i class="fab fa-telegram"></i></a></li>
+                    <li class="mb-2"><a href="http://instagram.com/_u/{utkirg_gaybullaev}/"><i
+                            class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+<script src="{{ url_for('static', path='/js/plugins.js') }}"></script>
+<script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+
+
+
+
+
+</script>
+</body>

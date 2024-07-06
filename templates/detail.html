@@ -1,0 +1,244 @@
+{% extends "bases.html" %}
+
+<body>
+<!-- Page Loader -->
+{% block navbar %}
+<div id="loader-wrapper">
+    <div id="loader"></div>
+
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('read_item') }}">
+            <i class="fas fa-film mr-2"></i>
+            Elektronika-Navoiy
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1 active" aria-current="page"
+                       href="{{ url_for('read_item') }}">Товары</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="{{ url_for('read_video') }}">Видео товаров</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="{{ url_for('read_contact') }}">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Каталог</a>
+                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                            {% for cat in catalogue %}
+                            <a href="{{ url_for ('catalog_type', id=cat.id ) }}" class="dropdown-item">{{ cat.name
+                                }}</a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block search %}
+<div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll"
+     data-image-src="{{ url_for('static', path='img/electrons.jpg') }}">
+    <form class="d-flex tm-search-form" action="/search/">
+        <input class="form-control tm-search-input" name="title" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success tm-search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block container %}
+<div class="container-fluid tm-container-content tm-mt-60">
+    <div class="row mb-4">
+        <h2 class="col-12 tm-text-primary">{{ item.title }}</h2>
+    </div>
+    <div class="row tm-mb-100">
+        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12 w-50">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="img-fluid " src="/{{ item.file }}">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid " src="/{{ item.file_2 }}">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid " src="/{{ item.file_3 }}">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid " src="/{{ item.file_4 }}">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid " src="/{{ item.file_5 }}">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid " src="/{{ item.file_6 }}">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid " src="/{{ item.file_7 }}">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 w-50">
+
+            <div class="tm-bg-gray tm-video-details">
+                <div class="row mb-4">
+                    <h2 class="col-12 tm-text-primary">{{ item.title }}</h2>
+                </div>
+                <div class="mr-4 mb-4 alert alert-success ">
+
+                    <span class="tm-text-info"> Цена: </span> <span class="tm-text ">   &nbsp;  <strong>   {{ item.price }}   </strong> &nbsp;   </span>
+                    <span class="tm-text-success">сум</span>
+
+                </div>
+                <div class="mr-4 mb-2">
+                    <h3 class="col-12 tm-text-success mb-3">Характеристика товара</h3>
+
+                    <span class="tm-text-gray-dark">Бранд: </span><span class="tm-text-primary">{{ item.brand }}</span>
+                </div>
+                <div class="mr-4 mb-2">
+                    <span class="tm-text-gray-dark">Номинальная мощность: </span><span class="tm-text-primary">{{ item.lower_power }}</span>
+                    <span>кВт</span>
+                </div>
+                <div class="mr-4 mb-2">
+                    <span class="tm-text-gray-dark">Номинальный ток: </span><span class="tm-text-primary">{{ item.lower_current }}</span>
+                    <span>A</span>
+                </div>
+                <div class="mr-4 mb-2">
+                    <span class="tm-text-gray-dark">Номинальная напряжения: </span><span class="tm-text-primary">{{ item.lower_voltage }}</span>
+                    <span>В</span>
+                </div>
+                <div class="mr-4 mb-2">
+                    <span class="tm-text-gray-dark">Размер: </span><span class="tm-text-primary">{{ item.size }}</span>
+                    <span>мм</span>
+                </div>
+                <div class="mr-4 ">
+                    <span class="tm-text-gray-dark">Страна производитель: </span><span class="tm-text-primary">{{ item.country }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 w-100 ">
+        <div class=" mb-4 mt-4 tm-bg-gray tm-video-details ">
+            <span class="tm-text-primary">Описание товара: </span><br><span
+                class="tm-text-success ">{{ item.description }}</span><span><a class="d-flex justify-content-end" href="{{ url_for('read_contact') }}">
+                            <button class="btn-primary" type="button">Связаться</button></a></span>
+        </div>
+    </div>
+    <div class="col-12 mt-4">
+        <div class="video-items-active">
+            <div class="video-items text-center">
+                <video width=650" height="440" controls>
+                    <source src="/{{ item.video }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="row mb-4 mt-4">
+    <h2 class="col-12 tm-text-primary">
+        Похожие товары
+    </h2>
+</div>
+<div class="row mb-3 tm-gallery">
+
+    {% for rel in relateds %}
+
+    {% if loop.index < 9 %}
+
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+        <figure class="effect-ming tm-video-item">
+            <img src="/{{ rel.file }}" alt="Image" class="img-fluid">
+            <figcaption class="d-flex align-items-center justify-content-center">
+                <h2>{{ rel.title }}</h2>
+                <a href="{{ url_for ('read_detail', id=rel.id ) }}">{{ rel.title }}</a>
+            </figcaption>
+        </figure>
+        <div class="video-intro d-flex justify-content-center">
+            <h4> {{ rel.title }}</h4>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+</div> <!-- row -->
+{% endblock %}
+
+
+{% block footer %}
+<footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+    <div class="container-fluid tm-container-small">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Elektronika-Navoiy</h3>
+                <p><b> Шырокий выбор всех видов радиодеталей, инструментов и электроники. </b></p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Контакты</h3>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
+                    <li class="mb-2"><a href="https://t.me/+998994123856"><i class="fab fa-telegram"></i></a></li>
+                    <li class="mb-2"><a href="http://instagram.com/_u/{utkirg_gaybullaev}/"><i
+                            class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+<script src="{{ url_for('static', path='/js/plugins.js') }}"></script>
+<script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
