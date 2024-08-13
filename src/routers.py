@@ -11,7 +11,7 @@ from .models import Item, Comment, Catalogue
 from typing_extensions import Annotated
 
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="templatess")
 
 router = APIRouter()
 
