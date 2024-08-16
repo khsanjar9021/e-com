@@ -1,7 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
+<head>
+    <style>
+
+/* Default styles (for mobile by default) */
+body {
+    background-color: lightblue;
+    font-size: 16px;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Media query for desktop (min-width: 1024px) */
+@media (min-width: 1024px) {
+    body {
+        background-color: lightgreen;
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+        text-align: left;
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+    body {
+        background-color: lightyellow;
+        font-size: 17px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+/* Default video styling */
+video {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+/* Media query for larger screens (desktops) */
+@media (min-width: 1024px) {
+  video {
+    width: 75%; /* Adjust the width as needed */
+    max-width: 1200px; /* Set a max width for larger screens */
+    margin: 0 auto; /* Center the video */
+  }
+}
+
+/* Media query for medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  video {
+    width: 85%; /* Adjust the width as needed */
+  }
+}
+
+/* Media query for small screens (mobile devices) */
+@media (max-width: 767px) {
+  video {
+    width: 100%; /* Full width for small devices */
+  }
+}
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elektronika - Navoiy </title>
@@ -31,6 +99,7 @@
         $(window).on("load", function() {
             $('body').addClass('loaded');
         });
+
 
 
 </script>
